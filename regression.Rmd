@@ -1,0 +1,55 @@
+```{r}
+df = read.csv("TVdata.csv")
+```
+```{r}
+colnames(df)
+```
+```{r}
+fit <- lm(brand_cnt~actor_top2_fans+director_top20*writer_top20*theme_guzhuang+platform_A+platform_Y+platform_T+platform_M, data=df)
+print(summary(fit))
+```
+```{r}
+fit <- lm(dengta_heat~brand_cnt+actor_top2_fans+director_top20*writer_top20*theme_guzhuang+platform_cnt_AYTM+one_platform, data=df)
+print(summary(fit))
+```
+actor_top2_fans为两主演的粉丝数之和
+和时间没有什么相关性
+```{r}
+fit <- lm(dengta_heat~actor_top2_fans+brand_cnt1*director_top20+brand_cnt1*writer_top20+brand_cnt1*platform_cnt_AYTM+time+douban_rate, data=df)
+print(summary(fit))
+```
+
+
+```{r}
+fit <- lm(dengta_heat~actor_top2_fans+brand_cnt1*director_top20+brand_cnt1*writer_top20+brand_cnt1*platform_cnt_AYTM+time+douban_rate+theme_guzhuang, data=df)
+print(summary(fit))
+```
+
+```{r}
+fit <- lm(dengta_heat~brand_cnt*actor_top2_fans+brand_cnt*director_top20+brand_cnt*writer_top20+brand_cnt*platform_cnt_AYTM+time+brand_cnt*theme_guzhuang, data=df)
+print(summary(fit))
+```
+
+
+```{r}
+fit <- lm(dengta_heat~brand_cnt*actor_top2_fans+brand_cnt*director_top20+brand_cnt*writer_top20+brand_cnt*platform_A+brand_cnt*platform_Y+brand_cnt*platform_T+brand_cnt*platform_M+time+brand_cnt*theme_guzhuang, data=df)
+print(summary(fit))
+```
+
+```{r}
+fit <- lm(actor2_fans~theme_guzhuang, data=df)
+print(summary(fit))
+```
+
+热度和豆瓣评分人数正相关
+```{r}
+fit <- lm(max_heat~douban_rate_cnt, data=df)
+print(summary(fit))
+```
+
+豆瓣评分人数越多的剧，豆瓣打分越高
+```{r}
+fit <- lm(douban_rate~log(douban_rate_cnt)+brand_cnt+actor_top2_fans+director_top20+writer_top20+platform_cnt_AYTM+time+theme_guzhuang, data=df)
+print(summary(fit))
+```
+
